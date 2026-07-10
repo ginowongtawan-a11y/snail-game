@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #7ec8ff 0%, #bfe9ff 60%, #d9f4ff 100%);
+  user-select: none;
+}
+
+#game-wrapper {
+  position: relative;
+  width: 800px;
+  max-width: 96vw;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+  border: 6px solid #2f5233;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #a8e6ff;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* ---------- HUD ---------- */
+#hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+  align-items: center;
+  pointer-events: none;
+}
+
+.hud-box {
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: .5px;
+}
+
+#lives-box .heart {
+  color: #ff4d5e;
+  font-size: 14px;
+  margin-left: 2px;
+}
+
+#mute-btn {
+  margin-left: auto;
+  pointer-events: all;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+  cursor: pointer;
+}
+#mute-btn:hover { background: rgba(0,0,0,0.75); }
+
+/* ---------- Overlays ---------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 30, 0.78);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  gap: 10px;
+  z-index: 10;
+  transition: opacity .25s ease;
+}
+
+.overlay h1 {
+  font-size: 34px;
+  text-shadow: 2px 2px 0 #2f5233;
+  margin-bottom: 6px;
+}
+
+.overlay p { font-size: 15px; opacity: .9; max-width: 480px; }
+.overlay .hint { font-size: 13px; opacity: .75; margin-top: 6px; }
+.overlay .final-score { font-size: 22px; font-weight: bold; color: #ffd93d; margin: 10px 0; }
+
+.hidden { display: none !important; }
+
+#start-btn {
+  margin-top: 14px;
+  padding: 12px 28px;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  background: #ffd93d;
+  color: #2f5233;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #c9a512;
+  transition: transform .08s ease;
+}
+#start-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #c9a512;
+}
+
+#end-title { color: #ff6b6b; }
+
+/* subtle hit flash */
+@keyframes flash {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(2.2) saturate(0); }
+}
+.hit-flash { animation: flash .25s ease; }
+
+@media (max-width: 500px) {
+  .overlay h1 { font-size: 24px; }
+  .hud-box { font-size: 11px; padding: 4px 8px; }
+}
